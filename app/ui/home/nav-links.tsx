@@ -8,8 +8,8 @@ import clsx from 'clsx';
 // Map of links to display in the side navigation.
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Clubs', href: '/home/clubs', icon: DocumentDuplicateIcon},
-  { name: 'Players', href: '/home/players', icon: UserGroupIcon },
+  { name: 'Tarefas', href: '/home/tarefas', icon: DocumentDuplicateIcon},
+  { name: 'Usuarios', href: '/home/usuarios', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {

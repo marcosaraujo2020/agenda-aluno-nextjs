@@ -3,20 +3,20 @@
 import api from '@/service/api';
 import { useEffect, useState } from "react";
 
-export default function ClubsPage() {
-  const [clubs, setClubs] = useState([]);
+export default function PlayersPage() {
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    api.get("/clubs") 
+    api.get("/usuarios") // Substitua por um endpoint real
       .then((response) => {
-        setClubs(response.data);
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => {
         console.error(error);
-        setError("Erro ao carregar os clubes.");
+        setError("Erro ao carregar os usuários.");
         setLoading(false);
       });
   }, []);
@@ -26,28 +26,22 @@ export default function ClubsPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Lista de Clubes</h1>
+      <h1 className="text-2xl font-bold mb-4">Lista de Jogadores</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-100 border-b">
               {/* <th className="px-4 py-2 text-left">ID</th> */}
               <th className="px-4 py-2 text-left">Nome</th>
-              <th className="px-4 py-2 text-left">País</th>
-              <th className="px-4 py-2 text-left">UF</th>
-              <th className="px-4 py-2 text-left">Ano de Fundação</th>
-              <th className="px-4 py-2 text-left">Jogadores</th>
+              <th className="px-4 py-2 text-left">Email</th>
             </tr>
           </thead>
           <tbody>
-            {clubs.map((club) => (
-              <tr key={club.id} className="border-b hover:bg-gray-50">
-                {/* <td className="px-4 py-2">{club.id}</td> */}
-                <td className="px-4 py-2">{club.name}</td>
-                <td className="px-4 py-2">{club.country}</td>
-                <td className="px-4 py-2">{club.uf}</td>
-                <td className="px-4 py-2">{club.year_foundation}</td>
-                <td className="px-4 py-2">{club.players}</td>
+            {users.map((user) => (
+              <tr key={user.id} className="border-b hover:bg-gray-50">
+                {/* <td className="px-4 py-2">{player.id}</td> */}
+                <td className="px-4 py-2">{user.name}</td>
+                <td className="px-4 py-2">{user.email}</td>
               </tr>
             ))}
           </tbody>
@@ -56,6 +50,8 @@ export default function ClubsPage() {
     </div>
   );
 }
+
+
 
 /* "use client";
 
@@ -67,7 +63,7 @@ export default function Page() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    api.get("/clubs") // Substitua por um endpoint real
+    api.get("/players") // Substitua por um endpoint real
       .then((response) => setData(response.data))
       .catch((error) => console.error(error));
   }, []);
@@ -75,3 +71,4 @@ export default function Page() {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }
  */
+
